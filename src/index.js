@@ -11,15 +11,24 @@ import './index.css';
 //     - Title
 //     - Author id
 
-// reducer
-var blogApp = (state = {authors: [], posts: []}, action = {type: ''})  => {
-  return {
-    authors: authorReducer(state.authors, action),
-    posts: postReducer(state.posts, action)
-  }
-}
+// combineReducers
+var { combineReducers } = Redux;
+// The only argument to combineReducers is an object
+// This object allows mapping of state field names and the reducers managing them
+var blogApp = combineReducers({
+  // { state: reducer } - name reducers after the state keys they manage
+  authors //: authors - ES6 object literal shorthand notation
+  posts //: posts
+})
 
-function authorReducer(state, action) {
+// var blogApp = (state = {}, action)  => {
+//   return {
+//     authors: authors(state.authors, action),
+//     posts: posts(state.posts, action)
+//   }
+// }
+
+function authors(state, action) {
   switch(action.type) {
   case 'ADD_AUTHOR':
     debugger;
@@ -31,7 +40,7 @@ function authorReducer(state, action) {
   }
 }
 
-function postReducer(state, action) {
+function posts(state, action) {
   switch(action.type) {
   case 'ADD_POST':
     return {}
